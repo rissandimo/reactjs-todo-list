@@ -1,6 +1,9 @@
 import { Button, FormControl, Input, InputLabel } from '@material-ui/core';
 import React, { useEffect, useState} from 'react';
 import './App.css';
+import firebase from 'firebase';
+
+import db from './firebase';
 
 function App() {
 
@@ -9,11 +12,24 @@ function App() {
 
   const addTodo = e => {
     e.preventDefault();
-    console.log('entere clicked');
+    // Set TODOs to local storage
     setTodos([...todos, input]);
-    console.log(todos);
     setInput('');
+
+    // Save TODO item to db
+    db.collection('todos').add({
+      todo:input,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    });
   }
+
+  // Load all TODOs from DB when component loads
+  // Each time a TODO is added or modified - changes will be updated accordingly in real-time
+  useEffect(() => {
+      db.collection('todos').onSnapshot(snapshot => {
+        setTodos(snapshot.docs.map(doc => doc.data().todo));
+      })
+  })
   return (
     <div className="app">
         <form>
@@ -23,7 +39,7 @@ function App() {
           </FormControl>
           <Button variant="contained" type="submit" color="primary" disabled={!input} onClick={addTodo}>Add Todo</Button>
         </form>
-        <ul>
+        <ul className="todo__list">
         {todos.map(todo => (
             <li key={todo}>{todo}</li>
         ))}

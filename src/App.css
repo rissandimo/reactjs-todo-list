@@ -3,3 +3,22 @@
   margin: 0;
   padding: 0;
 }
+.app{
+  margin: 0 auto;
+  width: 600px;
+}
+
+
+form{
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.todo__list{
+  margin-top: 4rem;
+
+}
+li{
+  list-style-type: none;
+}
