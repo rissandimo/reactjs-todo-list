@@ -2,3 +2,15 @@
     align-items: center;
     display: flex;
 }
+
+.todo__deleteIcon{
+    margin-left: 15px;
+}
+
+.MuiSvgIcon-root{
+    cursor: pointer;
+}
+
+.MuiSvgIcon-root:hover{
+    transform: scale(1.4);
+}
