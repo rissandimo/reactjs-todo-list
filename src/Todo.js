@@ -68,7 +68,7 @@ function Todo(props) {
                 <div className={classes.paper}>
                     <h1>Edit Todo</h1>
                     <input placeholder={props.todo.todo} value={input} onChange={e => setInput(e.target.value)}/>
-                    <DoneIcon onClick={e => setOpen(false)} />
+                    <DoneIcon onClick={updateTodo} />
                 </div>   
             </Modal>
         </List>
