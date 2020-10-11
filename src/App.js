@@ -26,10 +26,11 @@ function App() {
   // Load all TODOs from DB when component loads
   // Each time a TODO is added or modified - changes will be updated accordingly in real-time
   useEffect(() => {
-      db.collection('todos').onSnapshot(snapshot => {
+      db.collection('todos').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
         setTodos(snapshot.docs.map(doc => doc.data().todo));
       })
-  })
+  }, []);
+
   return (
     <div className="app">
         <form>
