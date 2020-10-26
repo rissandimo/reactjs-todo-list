@@ -1,9 +1,7 @@
 This is a fully functional CRUD Todo List app created using ReactJS.
 
 
-#Instructions
-
-## Installation
+## Instructions
 
 #### Clone Repo
 Clone the project into your machine by running the command  
